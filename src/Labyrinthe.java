@@ -18,18 +18,27 @@ public class Labyrinthe{
           }
           System.out.println();
         }
-        System.out.println();
-        System.out.println("Cette methode doit afficher le labyrinthe");
-        for (int i=0;i<10;i++){
-          System.out.print("\u2588\u2588");
-          System.out.print("  ");
-        }
-        System.out.println();
-
     }
 
     //resout le labyrinthe
     public static boolean resoudre(int[][] grille){
+      Localisation a = new Localisation(1,0);
+      Localisation fin= new Localisation(19, 18);
+      int i =0;
+      while (a.equals(fin)==false){
+        while ((a.deplacementBasPossible(grille)==false)&&i<20){
+          i=0;
+          if (a.deplacementDroitPossible(grille)==true){
+            a.deplacementDroit(grille);
+          }
+          else {
+            if (a.deplacementDroitPossible(grille)==true){
+              a.deplacementGauche(grille);
+            }  
+          }
+        }
+
+      }
         return true;
 
     }
