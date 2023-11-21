@@ -24,20 +24,27 @@ public class Labyrinthe{
     public static boolean resoudre(int[][] grille){
       Localisation a = new Localisation(1,0);
       Localisation fin= new Localisation(19, 18);
-      int i =0;
-      while (a.equals(fin)==false){
-        while ((a.deplacementBasPossible(grille)==false)&&i<20){
-          i=0;
-          if (a.deplacementDroitPossible(grille)==true){
-            a.deplacementDroit(grille);
-          }
-          else {
-            if (a.deplacementDroitPossible(grille)==true){
-              a.deplacementGauche(grille);
-            }  
-          }
+      while (!a.equals(fin)){
+        if (a.deplacementBasPossible(grille)){
+          a.deplacementBas(grille);
         }
-
+        else{
+          int i=0;
+          while ((!a.deplacementBasPossible(grille))&&i<40){
+            i++;
+            if (a.deplacementDroitPossible(grille)){
+              a.deplacementDroit(grille);
+            }
+            else {
+              if (a.deplacementGauchePossible(grille)){
+                a.deplacementGauche(grille);
+              }
+              else{
+                return false;
+              }
+            }
+          }
+       }
       }
         return true;
 

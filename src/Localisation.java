@@ -39,13 +39,14 @@ public class Localisation {
 
     public Localisation deplacementBas(int [][]grid){
         if (grid[x][y+1]==0){
-            x=x-1;
+            y=y+1;
             return this;
         }
         return this;
     }
 
     public boolean deplacementBasPossible(int [][]grid){
+        System.out.println(grid[1][3]);
         if (grid[x][y+1]==0){
             return true;
         }
