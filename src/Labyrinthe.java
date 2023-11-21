@@ -22,20 +22,35 @@ public class Labyrinthe{
 
     //resout le labyrinthe
     public static boolean resoudre(int[][] grille){
-      int j=0;
-      int i=1;
+      int y=0;
+      int x=1;
       int a=1;
-      for (j=0;j<20;j++){
-        for (i=a;i<=20;i++){
-          if (grille [i][j]==1){
-            break;
+      for (y=0;y<20;y++){
+        if(y==19&&x==18){
+          return true;
+        }
+        if(grille[y+1][x]==0){
+          continue;
+        }
+        for (x=a;x<=20;x++){
+          if (grille [y][x]==1){
+            for(x=a-1;x>0;x--){
+               if (grille [y][x]==1){
+                return false;
+               }
+              if (grille[y+1][x]==0){
+                a=x;
+                break;
+            }
           }
+          break;
+        }
           else{
-            if (grille[i][j+1]==0){
-              a=i;
+            if (grille[y+1][x]==0){
+              a=x;
               break;
             }
-            if (i==20){
+            if (x==20){
               return false;
             }
           }
