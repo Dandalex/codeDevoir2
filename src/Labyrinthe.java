@@ -22,31 +22,25 @@ public class Labyrinthe{
 
     //resout le labyrinthe
     public static boolean resoudre(int[][] grille){
-      Localisation a = new Localisation(1,0);
-      Localisation fin= new Localisation(19, 18);
-      while (!a.equals(fin)){
-        if (a.deplacementBasPossible(grille)){
-          a.deplacementBas(grille);
-        }
-        else{
-          int i=0;
-          while ((!a.deplacementBasPossible(grille))&&i<40){
-            i++;
-            if (a.deplacementDroitPossible(grille)){
-              a.deplacementDroit(grille);
+      int j=0;
+      int i=1;
+      int a=1;
+      for (j=0;j<20;j++){
+        for (i=a;i<=20;i++){
+          if (grille [i][j]==1){
+            break;
+          }
+          else{
+            if (grille[i][j+1]==0){
+              a=i;
+              break;
             }
-            else {
-              if (a.deplacementGauchePossible(grille)){
-                a.deplacementGauche(grille);
-              }
-              else{
-                return false;
-              }
+            if (i==20){
+              return false;
             }
           }
-       }
+        }
       }
-        return true;
-
+      return true;
     }
 }
