@@ -11,6 +11,9 @@ public class Labyrinthe{
             if (grid[i][t]==1){			
               System.out.print("\u2588\u2588"); // utiliser ce caractère pour faire les murs
             }
+            if (grid[i][t]==-1){
+              System.out.print("..");
+            }
             else{
               System.out.print("  ");
             }  

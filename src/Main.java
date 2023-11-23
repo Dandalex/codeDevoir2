@@ -9,7 +9,7 @@ class Main {
         // ce code n'a pas besoin d'être modifié
 
       
-        int[][] labyrinthe = charger("labyrinthe3.txt"); // ici on peut choisir le  labyrinthe parmi: "labyrinthe1.txt", "labyrinthe11.txt", "labyrinthe2.txt",  "labyrinthe21.txt", "labyrinthe3.txt", "labyrinthe31.txt".
+        int[][] labyrinthe = charger("labyrinthe1.txt"); // ici on peut choisir le  labyrinthe parmi: "labyrinthe1.txt", "labyrinthe11.txt", "labyrinthe2.txt",  "labyrinthe21.txt", "labyrinthe3.txt", "labyrinthe31.txt".
 
 
         // fonction pour afficher le labyrinthe (à faire)
