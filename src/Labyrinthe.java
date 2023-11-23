@@ -22,9 +22,8 @@ public class Labyrinthe{
 
     //resout le labyrinthe
     public static boolean resoudre(int[][] grille){
-      int y=0;
-      int x=1;
-      int a=1;
+      int y=0, x=1, a=1;
+      boolean [][] reponse = new boolean[grille.length][grille[0].length];
       for (y=0;y<20;y++){
         if(y==19&&x==18){
           return true;
