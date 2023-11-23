@@ -1,19 +1,22 @@
-import java.io.FileNotFoundException;
-
 public class Test {
     
 
-    public static void main(String[] args){
- 
-        /*Localisation b = new Localisation(0, 0);
+    public static boolean resoudre (int grid[][]){
+        int y=0, x=1, a=1, b=0;
+        boolean [][] reponse = new boolean[grid.length][grid[0].length];
+        reponse[y][x]=true;
+            for (y=0;y<20;y++){
+                if (grid[y][x-1]==0){
+                    x=x-1;
+                    reponse[y][x]=true;
+                    
+                }
 
-        b.printLocal();*/
-
-        int [][]grid = {{0,0,0,0,1},
-                        {1,0,1,0,0}};
 
 
 
+            }
 
+        return false;
     }
 }
