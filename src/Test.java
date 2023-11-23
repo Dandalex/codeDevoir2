@@ -19,33 +19,47 @@ public class Test {
 					return resoudre(grid);
 				}
 				if (grid[y+1][x]==0 && (verifierLineaireCase(grid, y, x)) && ancienY!=y+1){
-					ancienY=y;
 					y=y+1;
+					grid[y][x]=-1;
 					return resoudre(grid);
                 }
 				if (grid[y][x+1]==0&&(verifierLineaireCase(grid, y, x))&& ancienX!=x+1){
-					ancienX=x;
 					x=x+1;
+					grid[y][x]=-1;
 					return resoudre(grid);
                 }
 				if (grid[y-1][x]==0&&(verifierLineaireCase(grid, y, x))&&ancienY!=y-1){
-					ancienY=y;
 					y=y-1;
+					grid[y][x]=-1;
 					return resoudre(grid);
                 }
-				/*if (grid[y-1][x]==1 &&(verifierIntersection(grid, y, x))==true){
-				
-					}*/
+				if (grid[y][x-1]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y, x-1)){
+					x=x-1;
+					grid[y][x]=-1;
+					return resoudre(grid);
 				}
+				if (grid[y+1][x]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y+1, x)){
+					y=y+1;
+					grid[y][x]=-1;
+					return resoudre(grid);
+				}
+				if (grid[y+1][x]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y+1, x)){
+					y=y+1;
+					grid[y][x]=-1;
+					return resoudre(grid);
+				}
+				//a continuer ici
 
 
 
 
             
 
-        return false;
+        	return false;
 			
-    }
+    	}
+		return true;
+	}
     
     public static boolean verifierIntersection (int grid[][],int y , int x) {
     	if (grid[y][x-1]==0 && grid[y+1][x]==0 && grid[y][x+1]==0||
@@ -91,8 +105,8 @@ public static boolean verifierLineaireCase (int grid[][],int y , int x) {
     }
 
 	 
-    public static boolean culDeSac (int grid[][],boolean[][] reponse,int y , int x) {
-		if (verifierLineaireCase(grid, y, x)==false&&verifierIntersection(grid, y, x)==false){
+    public static boolean verifierCulDeSac (int grid[][], int y , int x) {
+		if (verifierLineaireCase(grid, y, x)==false && verifierIntersection(grid, y, x)==false){
 			return true;
 		}
 		
