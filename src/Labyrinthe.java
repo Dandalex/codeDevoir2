@@ -14,7 +14,7 @@ public class Labyrinthe{
             if (grid[i][t]==-1){
               System.out.print("..");
             }
-            else{
+            if (grid[i][t]==0 || grid[i][t]==-2){
               System.out.print("  ");
             }  
 

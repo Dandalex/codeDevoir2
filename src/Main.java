@@ -13,9 +13,9 @@ class Main {
 
 
         // fonction pour afficher le labyrinthe (à faire)
-        Labyrinthe.afficher(labyrinthe);
+        Test.afficher(labyrinthe);
         // fonction pour résoudre le labyrinthe (à faire)
-        boolean solution = Labyrinthe.resoudre(labyrinthe);
+        boolean solution = Test.resoudre(labyrinthe);
         
         if (solution == true){
             System.out.println("Chemin trouvé!");
