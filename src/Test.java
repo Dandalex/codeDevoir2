@@ -15,7 +15,6 @@ public class Test {
 			  if (grid[i][t]==0 || grid[i][t]==-2){
 				System.out.print("  ");
 			  }  
-  
 			}
 			System.out.println();
 		  }
@@ -38,7 +37,6 @@ public class Test {
 					}	
 				}
 			}
-
 			while (grid[yDebut][xDebut]!=-1 && grid[yFin][xFin]!=-1){
 				for (int y=1;y<19;y++){
 					for (int x=1;x<19;x++){
@@ -65,9 +63,7 @@ public class Test {
     	}
     }
     
-    
-
-public static boolean verifierLineaireCase (int grid[][],int y , int x) {
+	public static boolean verifierLineaireCase (int grid[][],int y , int x) {
     	if ((grid[y][x-1]==0 && grid[y][x+1]==0 && grid[y-1][x]!=0 && grid[y+1][x]!=0)
 		||(grid[y][x-1]==0 && grid[y][x+1]!=0 && grid[y-1][x]==0 && grid[y+1][x]!=0)
 		||(grid[y][x-1]!=0 && grid[y][x+1]==0 && grid[y-1][x]==0 && grid[y+1][x]!=0)
@@ -81,12 +77,9 @@ public static boolean verifierLineaireCase (int grid[][],int y , int x) {
     	}
     }
 
-	 
     public static boolean verifierCulDeSac (int grid[][], int y , int x) {
-		if (grid[y][x]==0){
-			if (!verifierLineaireCase(grid, y, x) && !verifierIntersection(grid, y, x) && y!=0 && y!=19){
+		if (grid[y][x]==0 && (!verifierLineaireCase(grid, y, x) && !verifierIntersection(grid, y, x) && y!=0 && y!=19)){
 				return true;
-						}
 		}
     	return false;
     }

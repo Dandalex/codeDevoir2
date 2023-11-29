@@ -9,13 +9,13 @@ class Main {
         // ce code n'a pas besoin d'être modifié
 
       
-        int[][] labyrinthe = charger("labyrinthe2.txt"); // ici on peut choisir le  labyrinthe parmi: "labyrinthe1.txt", "labyrinthe11.txt", "labyrinthe2.txt",  "labyrinthe21.txt", "labyrinthe3.txt", "labyrinthe31.txt".
+        int[][] labyrinthe = charger("labyrinthe3.txt"); // ici on peut choisir le  labyrinthe parmi: "labyrinthe1.txt", "labyrinthe11.txt", "labyrinthe2.txt",  "labyrinthe21.txt", "labyrinthe3.txt", "labyrinthe31.txt".
 
 
         // fonction pour afficher le labyrinthe (à faire)
-        Test.afficher(labyrinthe);
+        Labyrinthe.afficher(labyrinthe);
         // fonction pour résoudre le labyrinthe (à faire)
-        boolean solution = Test.resoudre(labyrinthe);
+        boolean solution = Labyrinthe.resoudre(labyrinthe);
         
         if (solution == true){
             System.out.println("Chemin trouvé!");
