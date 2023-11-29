@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Test {
 
@@ -7,13 +6,13 @@ public class Test {
 		// les lignes ci-dessous indiquent comment utiliser les caractères "blocs"  
 		  for (int i=0;i<grid.length;i++){
 			for (int t=0;t<grid.length;t++){
-			  if (grid[i][t]==1 || grid[i][t]==-2){			
+			  if (grid[i][t]==1 ){			
 				System.out.print("\u2588\u2588"); // utiliser ce caractère pour faire les murs
 			  }
 			  if (grid[i][t]==-1){
 				System.out.print("..");
 			  }
-			  if (grid[i][t]==0){
+			  if (grid[i][t]==0 || grid[i][t]==-2){
 				System.out.print("  ");
 			  }  
   
@@ -24,83 +23,41 @@ public class Test {
 
 	public static boolean resoudre (int grid[][]){
 		int xDebut = 1, xFin=18, yDebut = 1, yFin=18;
-        //int ancienY=1, ancienX=0;
-        //boolean [][] reponse = new boolean[grid.length][grid[0].length];
-       // reponse[y][x]=true;
-            for (int i= 0; i<(1);i++){
-				for (int y=1;y<18;y++){
-					for (int x=1;x<18;x++){
+		boolean changement=true;
+            while (changement==true){
+				changement=false;
+				for (int y=1;y<19;y++){
+					for (int x=1;x<20;x++){
 						if( grid[yDebut][xDebut]==-2||grid[yFin][xFin]==-2){
 							return false;
 						}
-						if(grid[y][x]==0)
-						verifierCulDeSac(grid, y, x);
+						if(grid[y][x]==0 && verifierCulDeSac(grid, y, x)){
+							changement = true;
+							grid[y][x]=-2;
+						}
 					}	
 				}
 			}
-			System.out.println(Arrays.deepToString(grid));
-			/*while (grid[yDebut][xDebut]!=-1 && grid[yFin][xFin]!=-1){
-				for (int y=1;y<18;y++){
-					for (int x=1;x<18;x++){
-						if (verifierLineaireCase(grid, y, x));
+
+			while (grid[yDebut][xDebut]!=-1 && grid[yFin][xFin]!=-1){
+				for (int y=1;y<19;y++){
+					for (int x=1;x<19;x++){
+						if (grid[y][x]==0)
 							grid[y][x]=-1;
 					}	
 				}
-			}*/
+			}
+			grid[0][1]=-1;
+			grid[19][18]=-1;
 			return true;
 	}
-				//ici on suit un chemin linéaire
-				/* 
-                if (grid[y][x-1]==0 && (verifierLineaireCase(grid, y, x)) && ancienX!=x-1){
-					x=x-1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-				}
-				if (grid[y+1][x]==0 && (verifierLineaireCase(grid, y, x)) && ancienY!=y+1){
-					y=y+1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-                }
-				if (grid[y][x+1]==0&&(verifierLineaireCase(grid, y, x))&& ancienX!=x+1){
-					x=x+1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-                }
-				if (grid[y-1][x]==0&&(verifierLineaireCase(grid, y, x))&&ancienY!=y-1){
-					y=y-1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-                }
-				ici on verifier les intersection, mais je crois changer pour modifier tout les cul de sacs
-				if (grid[y][x-1]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y, x-1)){
-					x=x-1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-				}
-				if (grid[y+1][x]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y+1, x)){
-					y=y+1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-				}
-				if (grid[y+1][x]==0 && verifierIntersection(grid, y, x) && !verifierCulDeSac(grid, y+1, x)){
-					y=y+1;
-					grid[y][x]=-1;
-					return resoudre(grid);
-				}*/
-			
-
-
-
-
-            
-
-
-    
+				
+   
     public static boolean verifierIntersection (int grid[][],int y , int x) {
-    	if (grid[y][x-1]==0 && grid[y+1][x]==0 && grid[y][x+1]==0||
-    		grid[y][x+1]==0 && grid[y+1][x]==0 && grid[y][x+1]==0|| 
-    		grid[y][x-1]==0 && grid[y-1][x]==0 && grid[y][x+1]==0||
-    		grid[y][y+1]==0 && grid[y-1][x]==0 && grid[y][x+1]==0){
+    	if ((grid[y][x-1]==0 && grid[y+1][x]==0 && grid[y][x+1]==0)||
+    		(grid[y][x+1]==0 && grid[y+1][x]==0 && grid[y-1][x]==0)|| 
+    		(grid[y][x-1]==0 && grid[y-1][x]==0 && grid[y][x+1]==0)||
+    		(grid[y][x-1]==0 && grid[y-1][x]==0 && grid[y+1][x]==0)){
     		return true;
     	}
     	else {
@@ -109,29 +66,14 @@ public class Test {
     }
     
     
-/*public static char verifierOrigine ( int y , int ancienY, int x, int ancienX) {
-	 if(ancienX==x&&ay==y-1) {
-		 return 'h';
-	 }
-	 if(ancienX==x&&ancienY==y+1) {
-		 return 'b';
-	 }
-	 if(ancienX==x-1&&ancienY==y) {
-		 return 'g';
-	 }
-	 if(ancienX==x+1&&ancienY==y+1) {
-		 return 'd';
-	 }
- }*/
-
 
 public static boolean verifierLineaireCase (int grid[][],int y , int x) {
-    	if (grid[y][x-1]==0 && grid[y][x+1]==0 && grid[y-1][x]!=0 && grid[y+1][x]!=0
-		||grid[y][x-1]==0 && grid[y][x+1]!=0 && grid[y-1][x]==0 && grid[y+1][x]!=0
-		||grid[y][x-1]!=0 && grid[y][x+1]==0 && grid[y-1][x]==0 && grid[y+1][x]!=0
-		||grid[y][x-1]==0 && grid[y][x+1]!=0 && grid[y-1][x]!=0 && grid[y+1][x]==0
-		||grid[y][x-1]!=0 && grid[y][x+1]==0 && grid[y-1][x]!=0 && grid[y+1][x]==0
-		||grid[y][x-1]!=0 && grid[y][x+1]!=0 && grid[y-1][x]==0 && grid[y+1][x]==0){
+    	if ((grid[y][x-1]==0 && grid[y][x+1]==0 && grid[y-1][x]!=0 && grid[y+1][x]!=0)
+		||(grid[y][x-1]==0 && grid[y][x+1]!=0 && grid[y-1][x]==0 && grid[y+1][x]!=0)
+		||(grid[y][x-1]!=0 && grid[y][x+1]==0 && grid[y-1][x]==0 && grid[y+1][x]!=0)
+		||(grid[y][x-1]==0 && grid[y][x+1]!=0 && grid[y-1][x]!=0 && grid[y+1][x]==0)
+		||(grid[y][x-1]!=0 && grid[y][x+1]==0 && grid[y-1][x]!=0 && grid[y+1][x]==0)
+		||(grid[y][x-1]!=0 && grid[y][x+1]!=0 && grid[y-1][x]==0 && grid[y+1][x]==0)){
     		return true;
     	}
     	else {
@@ -143,16 +85,10 @@ public static boolean verifierLineaireCase (int grid[][],int y , int x) {
     public static boolean verifierCulDeSac (int grid[][], int y , int x) {
 		if (grid[y][x]==0){
 			if (!verifierLineaireCase(grid, y, x) && !verifierIntersection(grid, y, x) && y!=0 && y!=19){
-				grid[x][y]=-2;
 				return true;
-			}
+						}
 		}
     	return false;
     }
-    
-    
-    
-    
-    
     
 }
