@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Test {
 
 	public static void afficher(int[][] grid){
@@ -5,13 +7,13 @@ public class Test {
 		// les lignes ci-dessous indiquent comment utiliser les caractères "blocs"  
 		  for (int i=0;i<grid.length;i++){
 			for (int t=0;t<grid.length;t++){
-			  if (grid[i][t]==1){			
+			  if (grid[i][t]==1 || grid[i][t]==-2){			
 				System.out.print("\u2588\u2588"); // utiliser ce caractère pour faire les murs
 			  }
 			  if (grid[i][t]==-1){
 				System.out.print("..");
 			  }
-			  if (grid[i][t]==0 || grid[i][t]==-2){
+			  if (grid[i][t]==0){
 				System.out.print("  ");
 			  }  
   
@@ -25,23 +27,26 @@ public class Test {
         //int ancienY=1, ancienX=0;
         //boolean [][] reponse = new boolean[grid.length][grid[0].length];
        // reponse[y][x]=true;
-            for (int i= 0; i<(grid.length*grid.length);i++){
+            for (int i= 0; i<(1);i++){
 				for (int y=1;y<18;y++){
 					for (int x=1;x<18;x++){
 						if( grid[yDebut][xDebut]==-2||grid[yFin][xFin]==-2){
 							return false;
 						}
+						if(grid[y][x]==0)
 						verifierCulDeSac(grid, y, x);
 					}	
 				}
 			}
-			while (grid[yDebut][xDebut]!=-1 && grid[yFin][xFin]!=-1){
+			System.out.println(Arrays.deepToString(grid));
+			/*while (grid[yDebut][xDebut]!=-1 && grid[yFin][xFin]!=-1){
 				for (int y=1;y<18;y++){
 					for (int x=1;x<18;x++){
-						verifierLineaireCase(grid, y, x);
+						if (verifierLineaireCase(grid, y, x));
+							grid[y][x]=-1;
 					}	
 				}
-			}
+			}*/
 			return true;
 	}
 				//ici on suit un chemin linéaire
@@ -136,10 +141,11 @@ public static boolean verifierLineaireCase (int grid[][],int y , int x) {
 
 	 
     public static boolean verifierCulDeSac (int grid[][], int y , int x) {
-		
-		if (!verifierLineaireCase(grid, y, x) && !verifierIntersection(grid, y, x) && y!=0 && y!=19){
-			grid[x][y]=-2;
-			return true;
+		if (grid[y][x]==0){
+			if (!verifierLineaireCase(grid, y, x) && !verifierIntersection(grid, y, x) && y!=0 && y!=19){
+				grid[x][y]=-2;
+				return true;
+			}
 		}
     	return false;
     }
